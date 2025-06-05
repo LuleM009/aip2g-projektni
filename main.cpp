@@ -116,5 +116,117 @@ int main()
                 cout << "Artikal nije pronadjen.\n";
             }
         }
+        else if (izbor == 4)
+        {
+            string unosNaziv;
+            int komada;
+
+            cout << "\nUnesite naziv artikla iz kataloga (ili 'kraj' za izlaz): ";
+            cin.ignore();
+
+            while (true)
+            {
+                getline(cin, unosNaziv);
+
+                if (unosNaziv == "kraj")
+                    break;
+
+                bool pronadjen = false;
+                int indeksArtikla = -1;
+
+                for (int i = 0; i < brojArtikala; i++)
+                {
+                    if (naziv[i] == unosNaziv)
+                    {
+                        pronadjen = true;
+                        indeksArtikla = i;
+                        break;
+                    }
+                }
+
+                if (!pronadjen)
+                {
+                    cout << "Artikal nije pronađen. Pokušajte ponovo: ";
+                    continue;
+                }
+
+                cout << "Kolicina: ";
+                cin >> komada;
+                cin.ignore();
+
+                if (komada <= kolicina[indeksArtikla])
+                {
+                    kosaricaIndeksi[brojKosarica] = indeksArtikla;
+                    kosaricaKolicine[brojKosarica] = komada;
+                    kolicina[indeksArtikla] -= komada;
+                    brojKosarica++;
+                }
+                else
+                {
+                    cout << "Nema dovoljno na stanju.\n";
+                }
+
+                cout << "Dodaj jos (unesi naziv artikla ili 'kraj' za kraj): ";
+            }
+        }
+
+        else if (izbor == 5) //Pomogo Pero (plaćen u kavama)
+        {
+            if (brojKosarica == 0)
+            {
+                cout << "Kosarica je prazna.\n";
+                continue;
+            }
+
+            double ukupno = 0;
+            cout << "\nRacun #" << brojRacuna << ":\n";
+            cout << "Naziv               Kolicina  Cijena    Ukupno\n";
+
+            ofstream racuni("racuni.txt", ios::app);
+            racuni << "Racun #" << brojRacuna << "\n";
+
+            for (int i = 0; i < brojKosarica; i++)
+            {
+                int idx = kosaricaIndeksi[i];
+                int kol = kosaricaKolicine[i];
+                double iznos = kol * cijena[idx];
+                ukupno += iznos;
+
+                string nazivArtikla = naziv[idx];
+                int razmak = 20 - nazivArtikla.length();
+                cout << nazivArtikla;
+                for (int j = 0; j < razmak; j++)
+                    cout << ' ';
+
+                cout << kol;
+                if (kol < 10)
+                    cout << "         ";
+                else if (kol < 100)
+                    cout << "        ";
+                else
+                    cout << "       ";
+
+                cout << fixed << setprecision(2) << cijena[idx];
+                if (cijena[idx] < 10)
+                    cout << "      ";
+                else if (cijena[idx] < 100)
+                    cout << "     ";
+                else
+                    cout << "    ";
+
+                cout << fixed << setprecision(2) << iznos << endl;
+
+                racuni << naziv[idx] << "," << cijena[idx] << "," << kol << "\n";
+            }
+
+            cout << "\nUkupno za platiti: " << fixed << setprecision(2) << ukupno << " EUR\n";
+            racuni << "Ukupno: " << fixed << setprecision(2) << ukupno << "\n";
+            racuni << "###\n";
+
+            brojRacuna++;
+            brojKosarica = 0;
+            racuni.close();
+        }
     }
 }    
+    

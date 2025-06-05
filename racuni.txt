@@ -1,0 +1,10 @@
+Racun #1
+Filter160,4.3,1
+Tuborg,1,6
+Nes,12,1
+Ukupno: 22.30
+###
+Racun #1
+ffs169,4,1
+Ukupno: 4.00
+###
