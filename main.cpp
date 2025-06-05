@@ -88,6 +88,33 @@ int main()
                 cout << "(na stanju: " << kolicina[i] << ")" << endl;
             }
         }
-    
+        else if (izbor == 3)
+        {
+            string trazeni;
+            cin.ignore();
+            cout << "Unesite naziv artikla za brisanje: ";
+            getline(cin, trazeni);
+            int i;
+            for (i = 0; i < brojArtikala; i++)
+            {
+                if (naziv[i] == trazeni)
+                    break;
+            }
+            if (i < brojArtikala)
+            {
+                for (int j = i; j < brojArtikala - 1; j++)
+                {
+                    naziv[j] = naziv[j + 1];
+                    cijena[j] = cijena[j + 1];
+                    kolicina[j] = kolicina[j + 1];
+                }
+                brojArtikala--;
+                cout << "Artikal obrisan.\n";
+            }
+            else
+            {
+                cout << "Artikal nije pronadjen.\n";
+            }
+        }
     }
 }    
