@@ -1,0 +1,12 @@
+Racun #1
+F160,4.3,1
+Ukupno: 4.30
+###
+Racun #1
+F160,4.3,1
+Ukupno: 4.30
+###
+Racun #2
+Kola,1.5,1
+Ukupno: 1.50
+###

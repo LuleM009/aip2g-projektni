@@ -53,6 +53,38 @@ int main()
         }
         katalog.close();
     }
+    ifstream racuniIn("racuni.txt");
+    string linija;
+    int tempBroj = 0;
+
+    while (getline(racuniIn, linija))
+    {
+        if (linija.length() > 7 && linija[0] == 'R' && linija[1] == 'a' &&
+            linija[2] == 'c' && linija[3] == 'u' && linija[4] == 'n' &&
+            linija[5] == ' ' && linija[6] == '#')
+        {
+
+            int broj = 0;
+            for (size_t i = 7; i < linija.length(); i++)
+            {
+                if (linija[i] >= '0' && linija[i] <= '9')
+                {
+                    broj = broj * 10 + (linija[i] - '0');
+                }
+                else
+                {
+                    break; 
+                }
+            }
+
+            if (broj >= brojRacuna)
+            {
+                brojRacuna = broj + 1;
+            }
+        }
+    }
+    racuniIn.close();
+
     while (true)
     {
         cout << "\n1. Unos novog artikla\n2. Katalog\n3. Izbrisi artikal\n4. Kosarica\n5. Ispis racuna\n6. Ucitaj racun\n7. Izlaz\n\nIzbor: ";
