@@ -8,3 +8,12 @@ Racun #1
 ffs169,4,1
 Ukupno: 4.00
 ###
+Racun #1
+Filter160,4.3,1
+Kola,1.5,1
+Ukupno: 5.80
+###
+Racun #1
+Filter160,4.3,1
+Ukupno: 4.30
+###

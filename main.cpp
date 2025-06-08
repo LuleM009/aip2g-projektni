@@ -227,6 +227,49 @@ int main()
             brojKosarica = 0;
             racuni.close();
         }
+        else if (izbor == 6)
+        {
+            int trazeni;
+            cout << "Unesite broj racuna: ";
+            cin >> trazeni;
+            ifstream racuni("racuni.txt");
+            string linija;
+            bool nadjen = false;
+
+            while (getline(racuni, linija))
+            {
+                if (linija == "Racun #" + to_string(trazeni))
+                {
+                    nadjen = true;
+                    cout << "\n"
+                         << linija << endl;
+                    while (getline(racuni, linija) && linija != "###")
+                    {
+                        cout << linija << endl;
+                    }
+                    break;
+                }
+            }
+
+            if (!nadjen)
+            {
+                cout << "Racun nije pronadjen.\n";
+            }
+
+            racuni.close();
+        }
+        else if (izbor == 7)
+        {
+            ofstream katalog("katalog.txt");
+            for (int i = 0; i < brojArtikala; i++)
+            {
+                katalog << naziv[i] << "\n"
+                        << cijena[i] << "\n"
+                        << kolicina[i] << "\n";
+            }
+            katalog.close();
+            break;
+        }
     }
-}    
-    
+}
+                
